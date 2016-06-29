@@ -6,18 +6,31 @@ And obviously here is the raw materials based on which hexo generates the static
 To visit the blog content, see: http://papaya-mobile.github.io .
 
 
+## branches
+
+There are two branches in this repo: ``master`` and ``source``.
+``master`` branch is the publishing branch, and github use the branch to render the blog pages.
+``source`` branch is the raw blog materials, based on hexo.
+
+Usually ``master`` branch should be committed by ``hexo deploy`` command, 
+and should not be interfered by any people.  And ``source`` branch is our workspace,
+we should checkout this branch to run hexo commands.
+
+
 ## Post a new blog
 
 1. install ``nodejs``, ``npm`` and ``hexo-cli``.
    see [hexo docs](https://hexo.io/zh-cn/docs/index.html ) for more details.
 
-2. clone this repo to local:
+2. clone this repo to local and checkout ``source`` branch:
     
         git clone https://github.com/papaya-mobile/papaya-mobile.github.io.git
+        cd papaya-mobile.github.io
+        git checkout -t origin/source
+
 
 3. install npm deps:
 
-        cd papaya-mobile.github.io
         npm install 
     
         # for local preview
@@ -44,7 +57,7 @@ To visit the blog content, see: http://papaya-mobile.github.io .
         hexo deploy
 
 
-8. remember to commit your post markdown file to ``master`` branch.
+8. remember to commit your post markdown file to ``source`` branch.
 
 
 ## workflow

@@ -70,4 +70,3 @@ theme: landscape
 deploy:
   type: git
   repo: git@github.com:papaya-mobile/papaya-mobile.github.io.git
-  branch: gh-pages
