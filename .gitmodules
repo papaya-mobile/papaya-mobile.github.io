@@ -1,0 +1,3 @@
+[submodule "source/tech-sharing"]
+	path = source/tech-sharing
+	url = https://github.com/papaya-mobile/papaya-tech-sharing.git
