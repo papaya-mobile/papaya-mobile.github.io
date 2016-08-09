@@ -26,7 +26,8 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render: 
-    - "tech-sharing/**"
+    - "tech-sharing/README.md"
+    - "tech-sharing/*/**"
 
 # Writing
 new_post_name: :title.md # File name of new posts
