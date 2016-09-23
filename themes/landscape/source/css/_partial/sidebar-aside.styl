@@ -2,26 +2,38 @@
   @media mq-normal
     column(sidebar-column)
 
+#sidebar
+  margin-top: - block-margin
+
 .widget-wrap
   margin: block-margin 0
+  line-height: 30px
 
 .widget-title
   @extend $block-caption
+  background: #f8f8f8
+  border-left: 3px #ff510d solid
 
 .widget
+  font-size: 14px 
   color: color-sidebar-text
-  text-shadow: 0 1px #fff
-  background: color-widget-background
-  box-shadow: 0 -1px 4px color-widget-border inset
-  border: 1px solid color-widget-border
-  padding: 15px
-  border-radius: 3px
+  padding: 0 5px
   a
-    color: color-link
     text-decoration: none
+    color: color-sidebar-text
+    position: relative
+    top: 5px
     &:hover
+      color: color-link
       text-decoration: underline
   ul, ol, dl
     ul, ol, dl
       margin-left: 15px
       list-style: disc
+    
+.widget_recent
+  color: color-sidebar-text
+  text-decoration: none
+  &:hover
+    color: color-link
+    text-decoration: underline

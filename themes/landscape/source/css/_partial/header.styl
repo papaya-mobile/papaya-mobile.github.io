@@ -1,7 +1,7 @@
 #header
   height: banner-height
   position: relative
-  border-bottom: 1px solid color-border
+  background: #fff
   &:before, &:after
     content: ""
     position: absolute
@@ -10,10 +10,8 @@
     height: 40px
   &:before
     top: 0
-    background: linear-gradient(rgba(0, 0, 0, 0.2), transparent)
   &:after
     bottom: 0
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.2))
 
 #header-outer
   height: 100%
@@ -22,36 +20,28 @@
 #header-inner
   position: relative
   overflow: hidden
-
-#banner
-  position: absolute
-  top: 0
-  left: 0
   width: 100%
-  height: 100%
-  background: url(banner-url) center #000
-  background-size: cover
-  z-index: -1
+  border-bottom: 1px solid color-border
 
 #header-title
   text-align: center
   height: logo-size
   position: absolute
-  top: 50%
+  top: 60%
   left: 0
-  margin-top: logo-size * -0.5
+  margin-top: logo-size * -0.25
 
 $logo-text
   text-decoration: none
   color: #fff
   font-weight: 300
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3)
 
 #logo
   @extend $logo-text
   font-size: logo-size
   line-height: logo-size
   letter-spacing: 2px
+  color: #2b2e2d
 
 #subtitle
   @extend $logo-text
@@ -64,35 +54,54 @@ $logo-text
 
 #main-nav
   float: left
-  margin-left: -15px
+  margin: 0 0px
 
 $nav-link
   float: left
-  color: #fff
-  opacity: 0.6
+  opacity: 1
   text-decoration: none
-  text-shadow: 0 1px rgba(0, 0, 0, 0.2)
+  text-shadow: 0 1px rgba(0, 0, 0, 0)
   transition: opacity 0.2s
   display: block
   padding: 20px 15px
   &:hover
-    opacity: 1
+    opacity: 0.6
 
 .nav-icon
   @extend $nav-link
   font-family: font-icon
   text-align: center
-  font-size: font-size
-  width: font-size
-  height: font-size
+  font-size: 1.15em
+  width: 1.15em
+  height: 1.15em
   padding: 20px 15px
   position: relative
   cursor: pointer
+  color: black
+
+.nav-active-first
+  background: url("images/nav-home-bg.png") no-repeat center center
+  color: #fff !important
+
+.nav-active
+  background: color-link
+  color: #fff !important
+
+.uk-navbar-nav>a:nth-child(2)
+  &:hover
+    background: url("images/nav-home-bg.png") no-repeat center center
+    color: #fff
+
+.uk-navbar-nav>a:not(:nth-child(2))
+  &:hover
+    background: color-link
+    color: #fff
 
 .main-nav-link
   @extend $nav-link
   font-weight: 300
   letter-spacing: 1px
+  color:#000
   @media mq-mobile
     display: none
 
@@ -105,7 +114,8 @@ $nav-link
 
 #sub-nav
   float: right
-  margin-right: -15px
+  a:hover
+      color: color-link
 
 #nav-rss-link
   &:before
@@ -163,3 +173,72 @@ $nav-link
   cursor: pointer
   &:hover, &:focus
     color: #777
+
+#header-inner .navbar-uk
+  background:#fff
+  border-top: 5px #ff510d solid
+
+.uk-navbar
+  background:#eee
+  color:#444
+
+.uk-navbar:after,.uk-navbar:before
+  content:""
+  display:table
+
+.uk-navbar:after
+  clear:both
+
+.uk-navbar-nav
+  margin:0
+  padding:0
+  list-style:none
+  float:left
+  
+.uk-float-right
+  float:right
+
+.uk-text-center
+  text-align:center!important
+
+.uk-container
+  box-sizing:border-box
+  max-width:100%
+  padding:0 35px
+
+.uk-container-center
+  margin-left:auto
+  margin-right:auto
+
+.uk-position-relative
+  position:relative!important
+  
+@media (min-width:1220px)
+  .uk-container
+    max-width:1220px
+    padding:0 0px
+
+.uk-container:after,.uk-container:before
+  content:""
+  display:table
+
+.uk-container:after
+  clear:both
+
+::selection
+  background:#39f
+  color:#fff
+  text-shadow:none
+
+a
+  transition:color .3s ease-out
+  background-color .3s ease-in
+  cursor:pointer
+  background:0 0
+
+.uk-navbar-nav>a
+  padding:20px 30px
+  line-height: 20px
+  font-size:1.15em 
+  color:#444847
+  font-family:"微软雅黑",Arial, Helvetica, sans-serif

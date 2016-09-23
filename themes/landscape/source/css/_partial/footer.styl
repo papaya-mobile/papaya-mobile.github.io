@@ -1,14 +1,126 @@
 #footer
   background: color-footer-background
   padding: 50px 0
-  border-top: 1px solid color-border
   color: color-grey
+  height:50px
   a
-    color: color-link
     text-decoration: none
-    &:hover
-      text-decoration: underline
 
 #footer-info
-  line-height: line-height
-  font-size: 0.85em
+  padding: 0 15px
+
+.footer-info-width-1-3
+  width: 30%
+  float: left
+  height: 80px
+
+.outer>.footer-info-width-1-3:not(:nth-child(1))
+  border-left: 1px solid #ddd
+  padding: 0 15px
+
+.dx-color-4
+  color: #ff510d
+
+.uk-position-relative
+  position: relative!important
+
+.uk-vertical-align
+  font-size:0
+
+.dx-position-ab
+  position:absolute
+
+.uk-height-1-1
+  height:100%
+
+.uk-vertical-align-middle
+  position: relative
+  top: 20px
+  display:inline-block
+  font-size: 1rem
+
+.uk-button-dropdown
+  display:inline-block
+
+#footer .uk-icon-button
+  background-color: #848a8c
+  margin-right: 20px
+
+[class*=uk-icon-], [class*=uk-icon-]:focus, [class*=uk-icon-]:hover
+  text-decoration: none
+
+[class*=uk-icon-]
+  font-family: FontAwesome
+  display: inline-block
+  font-weight: 400
+  font-style: normal
+  line-height: 1
+  -webkit-font-smoothing: antialiased
+
+.uk-icon-button
+  box-sizing: border-box
+  display: inline-block
+  width: 35px
+  height: 35px
+  border-radius: 100%
+  background: #fbfbfb
+  line-height: 35px
+  color: #444
+  font-size: 20px
+  text-align: center
+
+.dx-weixin
+  background-color: #e0e0e0
+  color: #fff
+  &:hover
+    background: color-weixin !important
+    color: #fff !important
+
+.uk-icon-weixin:before
+  content: "\f1d7"
+
+.uk-dropdown-top
+  margin-top:-5px
+
+.uk-dropdown
+  padding: 15px
+  background: #fff
+  color: #444
+  font-size: 1rem
+  vertical-align: top
+  border: 1px solid #ddd
+  border-radius: 3px
+  display: none
+  position: absolute
+  z-index: 1020
+  box-sizing: border-box
+  width: 200px
+
+img
+  max-width: 100%
+  height: auto
+  box-sizing: border-box
+  border: 0
+  vertical-align: middle
+
+.uk-open>.uk-dropdown
+  display: block
+  aniomation: uk-fade .2s ease-in-out
+  transform-origin:0 0 
+
+.dx-weibo
+  color: #fff
+  &:hover
+    background: color-weibo !important
+
+.uk-icon-weibo:before 
+  content: "\f18a"
+  vertical-align: middle
+
+.dx-linkedin
+  color: #fff
+  &:hover
+    background: color-linkedin !important
+
+.uk-icon-linkedin:before
+  content: "\f0e1"

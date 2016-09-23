@@ -15,8 +15,8 @@ input, button
 @font-face
   font-family: FontAwesome
   font-style: normal
-  font-weight: normal
-  src: url(font-icon-path + ".eot?v=#" + font-icon-version)
+  font-weight: 400
+  src: url(font-icon-path + ".otf?v=#" + font-icon-version)
   src: url(font-icon-path + ".eot?#iefix&v=#" + font-icon-version) format("embedded-opentype"),
        url(font-icon-path + ".woff?v=#" + font-icon-version) format("woff"),
        url(font-icon-path + ".ttf?v=#" + font-icon-version) format("truetype"),
@@ -24,17 +24,22 @@ input, button
 
 html, body, #container
   height: 100%
+  font: 400 14px/20px '微软雅黑', Arial, Helvetica, sans-serif
 
 body
   background: color-background
   font: font-size font-sans
   -webkit-text-size-adjust: 100%
 
+#header .uk-navbar
+    border-top: 5px #ff510d solid
+
 .outer
   clearfix()
   max-width: (column-width + gutter-width) * columns + gutter-width
   margin: 0 auto
   padding: 0 gutter-width
+  min-height: 45%
 
 .inner
   column(columns)
