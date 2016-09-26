@@ -1,9 +1,12 @@
 .article
-  margin: block-margin 0
-
+  margin: 0 0
+           
 .article-inner
   @extend $block
   overflow: hidden
+  border: 0
+  border-bottom:1px solid #ddd
+  box-shadow: none 
 
 .article-meta
   clearfix()
@@ -11,6 +14,7 @@
 .article-date
   @extend $block-caption
   float: left
+  margin: 0
 
 .article-category
   float: left
@@ -26,26 +30,26 @@
   margin: 0 12px 1em
 
 .article-header
-  padding: article-padding article-padding 0
+  padding: article-padding 0 0
 
 .article-title
   text-decoration: none
   font-size: 2em
-  font-weight: bold
   color: color-default
   line-height: line-height-title
   transition: color 0.2s
   a&:hover
     color: color-link
+    text-decoration: underline
 
 .article-entry
   @extend $base-style
   clearfix()
   color: color-default
-  padding: 0 article-padding
+  padding: 0 0
   p, table
     line-height: line-height
-    margin: line-height 0
+    margin: line-height*0.5 0
   h1, h2, h3, h4, h5, h6
     font-weight: bold
   h1, h2, h3, h4, h5, h6
@@ -121,39 +125,46 @@
       height: 100%
       margin-top: 0
 
+p.article-more-link
+  margin-top: 0
+  margin-bottom: article-padding
+
 .article-more-link a
   display: inline-block
   line-height: 1em
-  padding: 6px 15px
-  border-radius: 15px
-  background: color-background
-  color: color-grey
-  text-shadow: 0 1px #fff
+  padding: 0 0
+  color: color-link
   text-decoration: none
+  text-shadow: 0 1px #fff
   &:hover
-    background: color-link
-    color: #fff
-    text-decoration: none
-    text-shadow: 0 1px darken(color-link, 20%)
+    text-decoration: underline
+  &:after
+    content: " >>"
 
 .article-footer
   clearfix()
-  font-size: 0.85em
-  line-height: line-height
-  border-top: 1px solid color-border
-  padding-top: line-height
-  margin: 0 article-padding article-padding
+  font-size: article-padding
+  margin-bottom: article-padding * 1.5
   a
-    color: color-grey
+    color: color-default
     text-decoration: none
     &:hover
-      color: color-default
+      color: color-link
+
+.article-tag-list
+  a
+    &:hover
+      color: #fff
+      background: color-link
 
 .article-tag-list-item
   float: left
   margin-right: 10px
 
 .article-tag-list-link
+  font-size:12px
+  padding:5px
+  background:#f8f8f8
   &:before
     content: "#"
 
@@ -167,7 +178,6 @@
 .article-share-link
   cursor: pointer
   float: right
-  margin-left: 20px
   &:before
     content: "\f064"
     font-family: font-icon
@@ -221,7 +231,7 @@
     margin-right: -2px
 
 .article-nav-title
-  font-size: 0.85em
+  font-size: article-padding
   line-height: line-height
   margin-top: 0.5em
 
@@ -267,8 +277,6 @@ $article-share-link
     font-family: font-icon
     absolute-center(@font-size)
     text-align: center
-  &:hover
-    color: #fff
 
 .article-share-twitter
   @extend $article-share-link

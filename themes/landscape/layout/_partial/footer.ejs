@@ -1,11 +1,31 @@
-<footer id="footer">
+<footer id="footer" style="margin-top: 100px;">
   <% if (theme.sidebar === 'bottom'){ %>
     <%- partial('_partial/sidebar') %>
   <% } %>
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; <%= date(new Date(), 'YYYY') %> <%= config.author || config.title %><br>
-      <%= __('powered_by') %> <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
+  <div class="outer" style="padding-left:40px">
+    <div id="footer-info" class="footer-info-width-1-3">
+			Phone : +86-010-62560702<br/>
+			地址:北京市海淀区王庄路1号清华同方科技广场B座12层<br/>
+			邮编100083.
+		</div>
+    <div class="footer-info-width-1-3" >
+			<img src="/static/logo.png" width="150px" alt="papaya ads logo"/><br/>
+			<span class="dx-color-4">北京木瓜移动科技股份有限公司</span>
+			&copy;版权所有 2008-2016
+		</div>
+    <div class="footer-info-width-1-3 uk-position-relative">
+			<div class="uk-vertical-align dx-position-ab uk-height-1-1" style="left: 10%;">
+				<div class="uk-vertical-align-middle" >
+					<div class="uk-button-dropdown" data-uk-dropdown="{pos:'top-center'}" aria-haspopup="true" aria-expanded="false">
+						<a id="weixin" href="#" title="微信二维码" class="uk-icon-button uk-icon-weixin dx-weixin" rel="nofollow"></a>
+						<div id="img" class="uk-dropdown uk-dropdown-top" style="padding: 40px; top: -200px; left: -72.5px;">
+              <img src="/static/code.png" alt="微信二维码"/>
+            </div>
+					</div>
+					<a href="http://weibo.com/cnpapaya" target="_blank" title="微博" class="uk-icon-button uk-icon-weibo dx-weibo"></a>
+					<a href="https://www.linkedin.com/company/papaya-mobile-inc" target="_blank" title="linkedin" class="uk-icon-button uk-icon-linkedin dx-linkedin"></a>		
+				</div>
+			</div>
+		</div>
   </div>
 </footer>

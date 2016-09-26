@@ -1,8 +1,8 @@
 # Header
 menu:
   Home: /
-  Tech Sharing: /tech-sharing
-  Archives: /archives
+  Tech Sharing: /tech-sharing/
+  Archives: /archives/
 rss: /atom.xml
 
 # Content

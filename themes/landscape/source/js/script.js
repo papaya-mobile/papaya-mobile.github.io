@@ -134,4 +134,33 @@
 
     $container.removeClass('mobile-nav-on');
   });
+
+  var pn = location.pathname;
+  var as = document.getElementById('main-nav').getElementsByTagName('a'),find=false;
+  for (var i = 0, j = as.length; i < j; i++)
+    if (as[i].href.indexOf(pn) != -1) { 
+      if(i == 1){
+        $(as[i]).addClass('nav-active-first');
+      }else{
+        $(as[i]).addClass('nav-active');
+      }
+      find = true; 
+      break; 
+    }
+    if(!find){
+      $(as[1]).addClass('nav-active-first');
+    }
+  //weixin
+  $('#weixin').hover(
+    function () {
+      $('#img').show();
+      $('.uk-button-dropdown').addClass('uk-open');
+      $('.uk-vertical-align-middle>div').attr('aria-expanded','true');
+    },
+    function () {
+      $('#img').hide();
+      $('.uk-button-dropdown').removeClass('uk-open');
+      $('.uk-vertical-align-middle>div').attr('aria-expanded','false');
+    }
+  );
 })(jQuery);
