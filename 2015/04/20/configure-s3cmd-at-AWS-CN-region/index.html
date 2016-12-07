@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>configure s3cmd at AWS CN region | Engineering Blog of Papaya Mobile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="不得不赞叹下我国的强势和市场的广大。AWS进入中国后，IAM 等单独为中国区部署了一套。但这样也给我们带来了诸多的不便。比如设置Access Policy跨帐号访问的时候，永远提示帐号不存在（因为中国区的帐号系统中的确没有美西帐号的信息）。 正是这个原因，s3cmd工具在美西等区域使用一切正常，但在中国区的时候会出现拒绝的情况。 这里我们介绍一下我们解决的办法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="configure s3cmd at AWS CN region">
+<meta property="og:url" content="http://papaya-mobile.github.io/2015/04/20/configure-s3cmd-at-AWS-CN-region/index.html">
+<meta property="og:site_name" content="Engineering Blog of Papaya Mobile">
+<meta property="og:description" content="不得不赞叹下我国的强势和市场的广大。AWS进入中国后，IAM 等单独为中国区部署了一套。但这样也给我们带来了诸多的不便。比如设置Access Policy跨帐号访问的时候，永远提示帐号不存在（因为中国区的帐号系统中的确没有美西帐号的信息）。 正是这个原因，s3cmd工具在美西等区域使用一切正常，但在中国区的时候会出现拒绝的情况。 这里我们介绍一下我们解决的办法。">
+<meta property="og:updated_time" content="2016-12-07T03:21:12.959Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="configure s3cmd at AWS CN region">
+<meta name="twitter:description" content="不得不赞叹下我国的强势和市场的广大。AWS进入中国后，IAM 等单独为中国区部署了一套。但这样也给我们带来了诸多的不便。比如设置Access Policy跨帐号访问的时候，永远提示帐号不存在（因为中国区的帐号系统中的确没有美西帐号的信息）。 正是这个原因，s3cmd工具在美西等区域使用一切正常，但在中国区的时候会出现拒绝的情况。 这里我们介绍一下我们解决的办法。">
+  
+    <link rel="alternate" href="/atom.xml" title="Engineering Blog of Papaya Mobile" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="header-outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo"><b>Engineering Blog of Papaya Mobile</b></a>
+      </h1>
+      
+    </div>
+    <div id="header-inner"  data-uk-sticky="{top:-80}" style="position: fixed">
+      <div class="navbar-uk">
+        <div class="uk-container uk-container-center uk-position-relative">
+        <nav id="main-nav" class="uk-navbar-nav" >
+          <a id="main-nav-toggle" class="nav-icon"></a>
+          
+            <a class="main-nav-link" href="/">Home</a>
+          
+            <a class="main-nav-link" href="/tech-sharing/">Tech Sharing</a>
+          
+            <a class="main-nav-link" href="/archives/">Archives</a>
+          
+        </nav>
+        <nav id="sub-nav">
+          
+            <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          
+          <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+        </nav>
+      </div>
+      </div>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://papaya-mobile.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-configure-s3cmd-at-AWS-CN-region" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/20/configure-s3cmd-at-AWS-CN-region/" class="article-date">
+  <time datetime="2015-04-19T16:00:00.000Z" itemprop="datePublished">2015-04-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      configure s3cmd at AWS CN region
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>不得不赞叹下我国的强势和市场的广大。AWS进入中国后，IAM 等单独为中国区部署了一套。但这样也给我们带来了诸多的不便。比如设置<code>Access Policy</code>跨帐号访问的时候，永远提示帐号不存在（因为中国区的帐号系统中的确没有美西帐号的信息）。 正是这个原因，<code>s3cmd</code>工具在美西等区域使用一切正常，但在中国区的时候会出现拒绝的情况。 这里我们介绍一下我们解决的办法。</p>
+<a id="more"></a>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p><code>s3cmd</code> 1.5.2 版本支持 <code>v4</code>版本校验后，历史版本不支持<code>v4</code>版本校验, 详情可以参考文档 <a href="http://docs.aws.amazon.com/general/latest/gr/sigv4_signing.html" target="_blank" rel="external">Signing AWS Requests with Signature Version 4.</a>.<br><code>s3fs</code> 1.7.8 版本增加<code>v4</code> 校验的支持。 中国区属于AWS新区域，S3仅支持v4 版本校验。但中国区与美西等服务器不互通，因此不能使用v4版本校验默认的服务器配置。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>不能用<code>apt-get install s3cmd</code>命令安装<code>s3cmd</code>，否则，版本将是1.0.0。 如已经安装，需要卸载后，重新用pip安装。</p>
+<pre><code>sudo pip install s3cmd==1.5.2
+</code></pre><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>执行 <code>s3cmd --configure</code> 配置KEY。<br>配置完成后，修改<code>~/.s3cfg</code> 文件，修改以下字段：</p>
+<pre><code>bucket_location = cn-north-1
+host_base = s3.cn-north-1.amazonaws.com.cn
+host_bucket = %(bucket)s.s3.cn-north-1.amazonaws.com.cn
+website_endpoint = http://%(bucket)s.s3-website-%(location)s.amazonaws.com.cn/
+</code></pre><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>参数及使用方法与其他区使用一致。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://papaya-mobile.github.io/2015/04/20/configure-s3cmd-at-AWS-CN-region/" data-id="ciwedkcb90000i8ccigds1h98" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AWS/">AWS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/">AWS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AWS/" style="font-size: 10px;">AWS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/04/20/configure-s3cmd-at-AWS-CN-region/" class="widget_recent">configure s3cmd at AWS CN region</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer" style="margin-top: 100px;">
+  
+  <div class="outer" style="padding-left:40px">
+    <div id="footer-info" class="footer-info-width-1-3">
+			Phone : +86-010-62560702<br/>
+			地址:北京市海淀区王庄路1号清华同方科技广场B座12层<br/>
+			邮编100083.
+		</div>
+    <div class="footer-info-width-1-3" >
+			<img src="/static/logo.png" width="150px" alt="papaya ads logo"/><br/>
+			<span class="dx-color-4">北京木瓜移动科技股份有限公司</span>
+			&copy;版权所有 2008-2016
+		</div>
+    <div class="footer-info-width-1-3 uk-position-relative">
+			<div class="uk-vertical-align dx-position-ab uk-height-1-1" style="left: 10%;">
+				<div class="uk-vertical-align-middle" >
+					<div class="uk-button-dropdown" data-uk-dropdown="{pos:'top-center'}" aria-haspopup="true" aria-expanded="false">
+						<a id="weixin" href="#" title="微信二维码" class="uk-icon-button uk-icon-weixin dx-weixin" rel="nofollow"></a>
+						<div id="img" class="uk-dropdown uk-dropdown-top" style="padding: 40px; top: -200px; left: -72.5px;">
+              <img src="/static/code.png" alt="微信二维码"/>
+            </div>
+					</div>
+					<a href="http://weibo.com/cnpapaya" target="_blank" title="微博" class="uk-icon-button uk-icon-weibo dx-weibo"></a>
+					<a href="https://www.linkedin.com/company/papaya-mobile-inc" target="_blank" title="linkedin" class="uk-icon-button uk-icon-linkedin dx-linkedin"></a>		
+				</div>
+			</div>
+		</div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/tech-sharing/" class="mobile-nav-link">Tech Sharing</a>
+  
+    <a href="/archives/" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
