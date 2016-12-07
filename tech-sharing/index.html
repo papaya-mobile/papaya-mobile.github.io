@@ -3,18 +3,57 @@
 <head>
   <meta charset="utf-8">
   
-  <title>configure s3cmd at AWS CN region | Engineering Blog of Papaya Mobile</title>
+  <title>Papaya Internal Tech Sharing | Engineering Blog of Papaya Mobile</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不得不赞叹下我国的强势和市场的广大。AWS进入中国后，IAM 等单独为中国区部署了一套。但这样也给我们带来了诸多的不便。比如设置Access Policy跨帐号访问的时候，永远提示帐号不存在（因为中国区的帐号系统中的确没有美西帐号的信息）。 正是这个原因，s3cmd工具在美西等区域使用一切正常，但在中国区的时候会出现拒绝的情况。 这里我们介绍一下我们解决的办法。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="configure s3cmd at AWS CN region">
-<meta property="og:url" content="http://papaya-mobile.github.io/2015/04/20/configure-s3cmd-at-AWS-CN-region/index.html">
+  <meta name="description" content="Here are lists of our internal tech sharing.
+
+
+
+题目
+分享者
+日期
+
+
+
+
+前端小工具分享
+翟盈盈
+2016-07-08">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Papaya Internal Tech Sharing">
+<meta property="og:url" content="http://papaya-mobile.github.io/tech-sharing/index.html">
 <meta property="og:site_name" content="Engineering Blog of Papaya Mobile">
-<meta property="og:description" content="不得不赞叹下我国的强势和市场的广大。AWS进入中国后，IAM 等单独为中国区部署了一套。但这样也给我们带来了诸多的不便。比如设置Access Policy跨帐号访问的时候，永远提示帐号不存在（因为中国区的帐号系统中的确没有美西帐号的信息）。 正是这个原因，s3cmd工具在美西等区域使用一切正常，但在中国区的时候会出现拒绝的情况。 这里我们介绍一下我们解决的办法。">
-<meta property="og:updated_time" content="2016-12-07T03:21:12.959Z">
+<meta property="og:description" content="Here are lists of our internal tech sharing.
+
+
+
+题目
+分享者
+日期
+
+
+
+
+前端小工具分享
+翟盈盈
+2016-07-08">
+<meta property="og:updated_time" content="2016-12-07T03:43:03.224Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="configure s3cmd at AWS CN region">
-<meta name="twitter:description" content="不得不赞叹下我国的强势和市场的广大。AWS进入中国后，IAM 等单独为中国区部署了一套。但这样也给我们带来了诸多的不便。比如设置Access Policy跨帐号访问的时候，永远提示帐号不存在（因为中国区的帐号系统中的确没有美西帐号的信息）。 正是这个原因，s3cmd工具在美西等区域使用一切正常，但在中国区的时候会出现拒绝的情况。 这里我们介绍一下我们解决的办法。">
+<meta name="twitter:title" content="Papaya Internal Tech Sharing">
+<meta name="twitter:description" content="Here are lists of our internal tech sharing.
+
+
+
+题目
+分享者
+日期
+
+
+
+
+前端小工具分享
+翟盈盈
+2016-07-08">
   
     <link rel="alternate" href="/atom.xml" title="Engineering Blog of Papaya Mobile" type="application/atom+xml">
   
@@ -69,10 +108,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-configure-s3cmd-at-AWS-CN-region" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/04/20/configure-s3cmd-at-AWS-CN-region/" class="article-date">
-  <time datetime="2015-04-19T16:00:00.000Z" itemprop="datePublished">2015-04-20</time>
+    <a href="/tech-sharing/index.html" class="article-date">
+  <time datetime="2016-08-08T09:53:18.000Z" itemprop="datePublished">2016-08-08</time>
 </a>
     
   </div>
@@ -83,7 +122,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      configure s3cmd at AWS CN region
+      Papaya Internal Tech Sharing
     </h1>
   
 
@@ -91,26 +130,30 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>不得不赞叹下我国的强势和市场的广大。AWS进入中国后，IAM 等单独为中国区部署了一套。但这样也给我们带来了诸多的不便。比如设置<code>Access Policy</code>跨帐号访问的时候，永远提示帐号不存在（因为中国区的帐号系统中的确没有美西帐号的信息）。 正是这个原因，<code>s3cmd</code>工具在美西等区域使用一切正常，但在中国区的时候会出现拒绝的情况。 这里我们介绍一下我们解决的办法。</p>
-<a id="more"></a>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p><code>s3cmd</code> 1.5.2 版本支持 <code>v4</code>版本校验后，历史版本不支持<code>v4</code>版本校验, 详情可以参考文档 <a href="http://docs.aws.amazon.com/general/latest/gr/sigv4_signing.html" target="_blank" rel="external">Signing AWS Requests with Signature Version 4.</a>.<br><code>s3fs</code> 1.7.8 版本增加<code>v4</code> 校验的支持。 中国区属于AWS新区域，S3仅支持v4 版本校验。但中国区与美西等服务器不互通，因此不能使用v4版本校验默认的服务器配置。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>不能用<code>apt-get install s3cmd</code>命令安装<code>s3cmd</code>，否则，版本将是1.0.0。 如已经安装，需要卸载后，重新用pip安装。</p>
-<pre><code>sudo pip install s3cmd==1.5.2
-</code></pre><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>执行 <code>s3cmd --configure</code> 配置KEY。<br>配置完成后，修改<code>~/.s3cfg</code> 文件，修改以下字段：</p>
-<pre><code>bucket_location = cn-north-1
-host_base = s3.cn-north-1.amazonaws.com.cn
-host_bucket = %(bucket)s.s3.cn-north-1.amazonaws.com.cn
-website_endpoint = http://%(bucket)s.s3-website-%(location)s.amazonaws.com.cn/
-</code></pre><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>参数及使用方法与其他区使用一致。</p>
+        <p>Here are lists of our internal tech sharing.</p>
+<table>
+<thead>
+<tr>
+<th>题目</th>
+<th style="text-align:center">分享者</th>
+<th style="text-align:center">日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="2016-07-08-web-tools/">前端小工具分享</a></td>
+<td style="text-align:center">翟盈盈</td>
+<td style="text-align:center">2016-07-08</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://papaya-mobile.github.io/2015/04/20/configure-s3cmd-at-AWS-CN-region/" data-id="ciwee749g0001nkccs30x5ua6" class="article-share-link">Share</a>
+      <a data-url="http://papaya-mobile.github.io/tech-sharing/index.html" data-id="ciwee749e0000nkcc63pg1qqx" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AWS/">AWS</a></li></ul>
-
     </footer>
   </div>
   

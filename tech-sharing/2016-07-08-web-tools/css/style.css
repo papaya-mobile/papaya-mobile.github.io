@@ -1,0 +1,142 @@
+
+.step {
+    width:1024px;
+    height:768px;
+    margin:0 auto 24px auto;
+    text-align:center;
+    background-color:#fbfbfb;
+    font-family: "微软雅黑","Helvetica Neue",Helvetica,Arial,sans-serif;}
+.no-support-message { display:none; }
+.impress-not-supported .no-support-message { display:block;}
+.container {
+    width: 100%;
+    position: relative;
+}
+.logo_container{
+    height: 100px;
+    padding: 20px;
+}
+.logo {
+    height: 20px;
+    width: auto;
+}
+.title{
+    font-size: 45px;
+    line-height: 300px;
+    color: #ff510d;
+    font-weight: bold;
+}
+.step-1{
+    height:768px;
+}
+.footer{
+    color: #ff510d;
+    font-size: 18px;
+}
+.list,.text-list{
+    list-style: none;
+    text-align: left;
+    font-size: 20px;
+    color: #333;
+    padding-left: 200px;
+}
+.list li{
+    padding: 10px;
+}
+.text-list{
+    padding-top: 50px;
+}
+.text-list a{
+    display: block;
+    text-decoration: none;
+    font-size: 20px;
+    line-height: 40px;
+    color: #A62524;
+
+}
+.text-list a img{
+    width: auto;
+    height: 35px;
+    margin-right: 20px;
+}
+.text-list .important{
+    color: red;
+    font-weight: bold;
+}
+
+.number{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: rgb(255, 230, 202);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 30px;
+    color: #A62524;
+    border: 5px solid #ff510d;
+    margin-right: 30px;
+
+}
+.text{
+    display: inline-block;
+    width: 400px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #ff510d;
+    color: white;
+    border-radius: 20px;
+
+
+}
+.nav{
+    width: 974px;
+    height: 60px;
+    line-height: 60px;
+    background-color: #ff510d;
+    text-align: left;
+    color: white;
+    font-size: 30px;
+    padding-left: 50px;
+    letter-spacing: 5px;
+}
+.text-bg{
+    width: 80%;
+    background-color: rgb(255, 230, 202);
+    height: 500px;
+    margin:  50px auto;
+    border-radius: 20px;
+}
+.rount{
+
+}
+#canvas{
+    position: absolute;
+    top:100px;
+    left: 0px;
+    z-index: -10;
+}
+.element-animation{
+    -webkit-animation: animationFrames linear 0.7s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-transform-origin: 50% 50%;
+    font-family: 'Arial Bold', Arial;
+    font-size: 60px;
+    font-weight: bolder;
+    color: #ff510d;
+    z-index: 100;
+    margin-top: 250px;
+
+}
+
+@-webkit-keyframes animationFrames {
+    0% {
+        opacity:1;
+        -webkit-transform:  rotate(0deg) ;
+    }
+    100% {
+        opacity:0;
+        -webkit-transform:  rotate(200deg) ;
+    }
+}
+
+
