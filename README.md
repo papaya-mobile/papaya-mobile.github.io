@@ -28,6 +28,10 @@ we should checkout this branch to run hexo commands.
         cd papaya-mobile.github.io
         git checkout -t origin/source
 
+2. update [papaya tech sharing](https://github.com/papaya-mobile/papaya-tech-sharing) submodule.
+
+        git submodule update --init
+
 
 3. install npm deps:
 
